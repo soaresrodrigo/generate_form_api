@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,32 +34,28 @@ public class UserController {
     
     @PostMapping
     public ResponseEntity<UserResponseDTO> createUser(@Valid @RequestBody UserRequestDTO userRequestDTO) {
-        try {
-            UserResponseDTO createdUser = userService.save(userRequestDTO);
-            return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().build();
-        }
+        UserResponseDTO createdUser = userService.save(userRequestDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
     
     @PutMapping("/{id}")
     public ResponseEntity<UserResponseDTO> updateUser(@PathVariable Long id, 
                                                      @Valid @RequestBody UserRequestDTO userRequestDTO) {
-        try {
-            UserResponseDTO updatedUser = userService.update(id, userRequestDTO);
-            return ResponseEntity.ok(updatedUser);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+        UserResponseDTO updatedUser = userService.update(id, userRequestDTO);
+        return ResponseEntity.ok(updatedUser);
+    }
+    
+    @GetMapping("/me")
+    public ResponseEntity<UserResponseDTO> getCurrentUser(Authentication authentication) {
+        String email = authentication.getName();
+        return userService.findByEmail(email)
+                .map(user -> ResponseEntity.ok(user))
+                .orElse(ResponseEntity.notFound().build());
     }
     
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-        try {
-            userService.deleteById(id);
-            return ResponseEntity.noContent().build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+        userService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

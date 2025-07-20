@@ -31,6 +31,11 @@ public class UserService {
                 .map(this::convertToResponseDTO);
     }
     
+    public Optional<UserResponseDTO> findByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .map(this::convertToResponseDTO);
+    }
+    
     public UserResponseDTO save(UserRequestDTO userRequestDTO) {
         if (userRepository.existsByEmail(userRequestDTO.getEmail())) {
             throw new RuntimeException("Email already exists");
