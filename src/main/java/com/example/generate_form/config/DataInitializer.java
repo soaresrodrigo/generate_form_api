@@ -10,25 +10,24 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class DataInitializer implements CommandLineRunner {
-    
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
-    
-    @Override
-    public void run(String... args) throws Exception {
-        if (userRepository.count() == 0) {
-            User user1 = new User();
-            user1.setFullName("Rodrigo Soares");
-            user1.setEmail("rodrigo@example.com");
-            user1.setPassword(passwordEncoder.encode("123456"));
-            userRepository.save(user1);
 
-            User user2 = new User();
-            user2.setFullName("Laís Soares");
-            user2.setEmail("lais@example.com");
-            user2.setPassword(passwordEncoder.encode("123456"));
-            userRepository.save(user2);
+  private final UserRepository userRepository;
+  private final PasswordEncoder passwordEncoder;
 
-        }
+  @Override
+  public void run(String... args) throws Exception {
+    if (userRepository.count() == 0) {
+      User user1 = new User();
+      user1.setFullName("Rodrigo Soares");
+      user1.setEmail("rodrigo@example.com");
+      user1.setPassword(passwordEncoder.encode("123456"));
+      userRepository.save(user1);
+
+      User user2 = new User();
+      user2.setFullName("Laís Soares");
+      user2.setEmail("lais@example.com");
+      user2.setPassword(passwordEncoder.encode("123456"));
+      userRepository.save(user2);
     }
+  }
 }

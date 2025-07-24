@@ -8,13 +8,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LoginResponseDTO {
-    
-    private String accessToken;
-    private String tokenType = "Bearer";
-    private UserResponseDTO user;
-    
-    public LoginResponseDTO(String accessToken, UserResponseDTO user) {
-        this.accessToken = accessToken;
-        this.user = user;
-    }
+
+  private String accessToken;
+  private String tokenType = "Bearer";
+  private UserResponseDTO user;
+
+  public LoginResponseDTO(String accessToken, UserResponseDTO user) {
+    this.accessToken = accessToken;
+    this.user = user;
+  }
 }

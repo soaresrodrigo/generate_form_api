@@ -15,18 +15,20 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
-    
-    private final AuthService authService;
-    
-    @PostMapping("/login")
-    public ResponseEntity<LoginResponseDTO> authenticateUser(@Valid @RequestBody LoginRequestDTO loginRequest) {
-        LoginResponseDTO response = authService.authenticateUser(loginRequest);
-        return ResponseEntity.ok(response);
-    }
-    
-    @PostMapping("/register")
-    public ResponseEntity<UserResponseDTO> registerUser(@Valid @RequestBody UserRequestDTO signUpRequest) {
-        UserResponseDTO result = authService.registerUser(signUpRequest);
-        return ResponseEntity.status(HttpStatus.CREATED).body(result);
-    }
+
+  private final AuthService authService;
+
+  @PostMapping("/login")
+  public ResponseEntity<LoginResponseDTO> authenticateUser(
+      @Valid @RequestBody LoginRequestDTO loginRequest) {
+    LoginResponseDTO response = authService.authenticateUser(loginRequest);
+    return ResponseEntity.ok(response);
+  }
+
+  @PostMapping("/register")
+  public ResponseEntity<UserResponseDTO> registerUser(
+      @Valid @RequestBody UserRequestDTO signUpRequest) {
+    UserResponseDTO result = authService.registerUser(signUpRequest);
+    return ResponseEntity.status(HttpStatus.CREATED).body(result);
+  }
 }
