@@ -37,7 +37,8 @@ public class AuthService {
                 .findByEmail(loginRequest.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        UserResponseDTO userResponse = new UserResponseDTO(user.getId(), user.getFullName(), user.getEmail());
+        UserResponseDTO userResponse = new UserResponseDTO(user.getId(), user.getFullName(), user.getEmail(),
+                user.getRole());
 
         return new LoginResponseDTO(jwt, userResponse);
     }
