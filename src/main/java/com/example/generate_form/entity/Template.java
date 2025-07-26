@@ -42,4 +42,7 @@ public class Template {
 
     @OneToMany(mappedBy = "template")
     private List<Customization> customizations;
+
+    @OneToMany(mappedBy = "template")
+    private List<Step> steps;
 }
