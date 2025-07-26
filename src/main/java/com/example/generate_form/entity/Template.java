@@ -38,7 +38,7 @@ public class Template {
     private String description;
 
     @Column(nullable = false)
-    private boolean active;
+    private boolean isActive;
 
     @OneToMany(mappedBy = "template")
     private List<Customization> customizations;

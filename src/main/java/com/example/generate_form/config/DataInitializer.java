@@ -47,17 +47,19 @@ public class DataInitializer implements CommandLineRunner {
 
         // ADDED INPUTS
         List<InputType> inputTypes = List.of(
-                new InputType(null, "text", "Text field"),
-                new InputType(null, "textarea", "Text area"),
-                new InputType(null, "checkbox", "Checkbox"),
-                new InputType(null, "switch", "Switch"),
-                new InputType(null, "image", "Image upload"),
-                new InputType(null, "number", "Number field"),
-                new InputType(null, "date", "Date picker"),
-                new InputType(null, "select", "Select dropdown"),
-                new InputType(null, "multiselect", "Multiple select dropdown"),
-                new InputType(null, "color", "Color picker"),
-                new InputType(null, "password", "Password field"));
+                InputType.builder().name("text").description("Text field").build(),
+                InputType.builder().name("textarea").description("Text area").build(),
+                InputType.builder().name("checkbox").description("Checkbox").build(),
+                InputType.builder().name("switch").description("Switch").build(),
+                InputType.builder().name("image").description("Image upload").build(),
+                InputType.builder().name("number").description("Number field").build(),
+                InputType.builder().name("date").description("Date picker").build(),
+                InputType.builder().name("select").description("Select dropdown").build(),
+                InputType.builder().name("multiselect").description("Multiple select dropdown").build(),
+                InputType.builder().name("color").description("Color picker").build(),
+                InputType.builder().name("password").description("Password field").build());
+
         inputTypeRepository.saveAll(inputTypes);
+
     }
 }
