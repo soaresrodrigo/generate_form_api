@@ -31,21 +31,21 @@ public class Customization {
     @JoinColumn(name = "layout_id", nullable = false)
     private Layout layout;
 
-    @Column(name = "cover", length = 255)
+    @Column(name = "cover", length = 255, nullable = true)
     private String cover;
 
-    @Column(name = "title", length = 100)
+    @Column(name = "title", length = 100, nullable = false)
     private String title;
 
-    @Column(name = "description", length = 255)
+    @Column(name = "description", length = 255, nullable = true)
     private String description;
 
-    @Column(name = "color_title", length = 50)
-    private String colorTitle;
+    @Column(name = "text_color_title", length = 7, nullable = false)
+    private String textColorTitle = "#222222";
 
-    @Column(name = "color_body", length = 50)
-    private String colorBody;
+    @Column(name = "text_color_body", length = 7, nullable = false)
+    private String textColorBody = "#333333";
 
-    @Column(name = "completion_message", length = 255)
+    @Column(name = "completion_message", length = 255, nullable = true)
     private String completionMessage;
 }
