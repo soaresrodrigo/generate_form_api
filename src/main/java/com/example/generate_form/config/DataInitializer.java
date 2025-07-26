@@ -4,9 +4,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.example.generate_form.entity.Layout;
 import com.example.generate_form.entity.Template;
 import com.example.generate_form.entity.User;
 import com.example.generate_form.entity.UserRole;
+import com.example.generate_form.repository.LayoutRepository;
 import com.example.generate_form.repository.TemplateRepository;
 import com.example.generate_form.repository.UserRepository;
 
@@ -20,6 +22,7 @@ public class DataInitializer implements CommandLineRunner {
     private final UserRepository userRepository;
     private final TemplateRepository templateRepository;
     private final PasswordEncoder passwordEncoder;
+    private final LayoutRepository layoutRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -54,5 +57,9 @@ public class DataInitializer implements CommandLineRunner {
         template2.setDescription("First template for regular user");
         template2.setActive(true);
         templateRepository.save(template2);
+
+        Layout sapphireLayout = new Layout();
+        sapphireLayout.setDescription("sapphire");
+        layoutRepository.save(sapphireLayout);
     }
 }
